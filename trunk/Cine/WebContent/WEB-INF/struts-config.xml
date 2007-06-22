@@ -15,10 +15,15 @@
    type="com.cine.actions.addPeliculaAction" validate="false">
    <forward name="exito" path="/exito.jsp"/>
   </action>
-  <action forward="/indexCine.jsp" path="/indexCine"/>
-  <action forward="/verPelicula.jsp" name="peliculasListForm"
+  <action forward="/indexCine.jsp" path="/indexCine">
+      <forward name="listarPeliculas" path="/verPeliculas.jsp"/>
+  </action>
+  
+<!--  
+<action forward="/verPelicula.jsp" name="peliculasListForm"
    path="/peliculasList" scope="session"
    type="com.cine.actions.peliculasListAction" validate="false"/>
+-->
  </action-mappings>
  <controller/>
 </struts-config>
