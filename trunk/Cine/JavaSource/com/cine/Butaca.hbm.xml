@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping schema="cine" package="com.cine">
+  <class name="Butaca" table="butaca" schema="cine" optimistic-lock="none">
+    <id name="ID" type="long" unsaved-value="0" column="id">
+      <generator class="native"/>
+    </id>
+    <property name="ocupado" type="boolean" column="ocupado"/>
+    <property name="fila" type="integer" column="fila"/>
+    <property name="columna" type="integer" column="columna"/>
+    <many-to-one name="sesionCine" entity-name="com.cine.SesionCine" cascade="none" foreign-key="SesionCine_id" not-null="false" column="sesion_cine_id"/>
+  </class>
+</hibernate-mapping>
