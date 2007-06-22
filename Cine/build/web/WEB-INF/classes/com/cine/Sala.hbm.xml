@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping schema="cine" package="com.cine">
+  <class name="Sala" table="sala" schema="cine" optimistic-lock="none">
+    <id name="ID" type="long" unsaved-value="0" column="id">
+      <generator class="native"/>
+    </id>
+    <property name="descripcion" type="string" column="descripcion"/>
+    <set name="sesiones" inverse="true" cascade="none">
+      <key foreign-key="Sala_id" column="sala_id"/>
+      <one-to-many entity-name="com.cine.SesionCine"/>
+    </set>
+  </class>
+</hibernate-mapping>
