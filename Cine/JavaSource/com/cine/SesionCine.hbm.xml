@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping schema="cine" package="com.cine">
+  <class name="SesionCine" table="sesion_cine" schema="cine" optimistic-lock="none">
+    <id name="ID" type="long" unsaved-value="0" column="id">
+      <generator class="native"/>
+    </id>
+    <property name="time" type="date" column="time"/>
+    <property name="precio" type="float" column="precio"/>
+    <many-to-one name="sala" entity-name="com.cine.Sala" cascade="none" foreign-key="Sala_id" not-null="false" column="sala_id"/>
+    <many-to-one name="pelicula" entity-name="com.cine.Pelicula" cascade="none" foreign-key="Pelicula_id" not-null="false" column="pelicula_id"/>
+    <set name="butacas" inverse="true" cascade="none">
+      <key foreign-key="SesionCine_id" column="sesion_cine_id"/>
+      <one-to-many entity-name="com.cine.Butaca"/>
+    </set>
+  </class>
+</hibernate-mapping>
