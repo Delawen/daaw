@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+                               "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+ <data-sources/>
+ <form-beans>
+  <form-bean name="PeliculaForm" type="com.cine.beans.PeliculaForm"/>
+  <form-bean name="peliculasListForm" type="com.cine.beans.peliculasListForm"/>
+ </form-beans>
+ <global-exceptions/>
+ <global-forwards/>
+ <action-mappings>
+  <action forward="/insertarPelicula.jsp" path="/insertarPelicula"/>
+  <action name="PeliculaForm" path="/addPelicula" scope="session"
+   type="com.cine.actions.addPeliculaAction" validate="false">
+   <forward name="exito" path="/exito.jsp"/>
+  </action>
+  <action forward="/indexCine.jsp" path="/indexCine"/>
+  <action forward="/verPelicula.jsp" name="peliculasListForm"
+   path="/peliculasList" scope="session"
+   type="com.cine.actions.peliculasListAction" validate="false"/>
+ </action-mappings>
+ <controller/>
+</struts-config>
