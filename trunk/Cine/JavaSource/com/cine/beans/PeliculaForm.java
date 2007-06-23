@@ -11,7 +11,6 @@ public class PeliculaForm extends org.apache.struts.action.ActionForm {
 
 	private String titulo;
 	private String sinopsis;
-	private long ID;
 
     public PeliculaForm () {
     	this.titulo = "";

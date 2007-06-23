@@ -8,11 +8,9 @@ public interface FachadaPelicula
 	public boolean addPelicula(String titulo, String sinopsis);
 	public List<Pelicula> getPeliculas();
 	public List<Pelicula> getPeliculas(Date time);
-	public Pelicula getPelicula(String titulo);
-	public Pelicula getPeliculaByID(long id);
+	public List<Pelicula> getPelicula(String titulo);
 	public List<Pelicula> searchPelicula(String palabra_clave);
 	public boolean deletePelicula(String titulo); 
-	public boolean deletePeliculaByID(long id);
 	
 	public List<Sala> getSalas();
 	public boolean addSala(String descripcion);
