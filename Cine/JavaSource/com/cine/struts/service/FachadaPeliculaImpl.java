@@ -59,9 +59,9 @@ public class FachadaPeliculaImpl implements FachadaPelicula
 		return resultado;
 	}
 
-	public Pelicula getPelicula(String titulo)
+	public List<Pelicula> getPelicula(String titulo)
 	{
-		Pelicula p = null;
+		List<Pelicula> resultado = new ArrayList<Pelicula>();
 		
 		daofact = DAOFactory.getInstance();
 		PeliculaDAO pdao = daofact.getPeliculaDAO();
@@ -70,17 +70,14 @@ public class FachadaPeliculaImpl implements FachadaPelicula
 		
 		Iterator it = peliculas.iterator();
 		
-		while(it.hasNext() && p==null)
+		while(it.hasNext())
 		{
-			Pelicula pm = (Pelicula)it.next();
-			if(pm.getTitulo().contains(titulo))
-				p=pm;;
+			Pelicula p = (Pelicula)it.next();
+			if(p.getTitulo().contains(titulo))
+				resultado.add(p);
 		}
 		
-		if(p==null)
-			return new Pelicula();
-		
-		return p;
+		return resultado;
 	}
 
 	public List<Pelicula> getPeliculas() 
@@ -354,47 +351,4 @@ public class FachadaPeliculaImpl implements FachadaPelicula
 		
 		return resultado;
 	}
-	public Pelicula getPeliculaByID(long id)
-	{	
-		Pelicula p;
-	
-		daofact = DAOFactory.getInstance();
-		PeliculaDAO pdao = daofact.getPeliculaDAO();
-
-		HibernateUtils.beginTransaction();
-		p = pdao.findById(id, false);
-		HibernateUtils.commitTransaction();
-	
-		return p;
-		
-	}
-	public boolean deletePeliculaByID(long id)
-	{
-		
-		boolean resultado = true;
-		
-		Pelicula p;
-	
-		daofact = DAOFactory.getInstance();
-		PeliculaDAO pdao = daofact.getPeliculaDAO();
-		
-		try
-		{
-			
-			HibernateUtils.beginTransaction();
-			p = pdao.findById(id, false);
-			pdao.makeTransient(p);
-			HibernateUtils.commitTransaction();
-			
-		}
-		
-		catch(Exception e)
-		{
-			resultado = false;
-		}
-	
-		return resultado;
-		
-	}
-	
 }

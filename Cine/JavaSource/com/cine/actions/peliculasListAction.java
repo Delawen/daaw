@@ -1,14 +1,11 @@
 package com.cine.actions;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
+import javax.servlet.http.*;
+import org.apache.struts.action.*;
 
 import com.cine.struts.service.*;
 import com.cine.beans.*;
+import java.util.List;
 
 public class peliculasListAction extends org.apache.struts.action.Action {
     
@@ -18,15 +15,21 @@ public class peliculasListAction extends org.apache.struts.action.Action {
     public peliculasListAction() {
     }
     
-    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception 
+    {
+        
+        HttpSession sesion = request.getSession();
+        
+        List peliculas;
         
     	FachadaPelicula fpeli = new FachadaPeliculaImpl();
     	
-    	peliculasListForm pform = (peliculasListForm) form;
+    	peliculas = fpeli.getPeliculas();
+        
+        if(peliculas != null)
+            sesion.setAttribute("peliculas", peliculas);
     	
-    	pform.setPeliculas(fpeli.getPeliculas());
-    	
-    	return mapping.findForward("ListarPeliculas");
+    	return (mapping.findForward("verPeliculas"));
     }
 
 }
